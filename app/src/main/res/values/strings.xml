@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Artist App</string>
+    <string name="headline_main">Welcome to Artist App</string>
+    <string name="headline_desc">If you click on your artist , you can see more info. </string>
+</resources>
