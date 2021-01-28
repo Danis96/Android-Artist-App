@@ -1,18 +1,13 @@
 package com.example.artistapp
 
-import android.Manifest
 import android.content.Context
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.artistapp.models.Artist
 import kotlinx.android.synthetic.main.activity_main.*
@@ -34,18 +29,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        
-            getAllArtists(this)
+
+        getAllArtists(this)
+
+        val adapter = ArtistAdapter(this, artistsList)
+        artistListView.adapter = adapter
+
 
     }
-
-//    private fun  requestStoragePermission() {
-//        if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) !== PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions(this, String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 100)
-//        }
-//
-//    }
-
 
     private fun getAllArtists(context: Context) {
         val api =
@@ -63,10 +54,9 @@ class MainActivity : AppCompatActivity() {
                     for (artist in dataList.artists) {
                         artistsList.add(artist)
                     }
-                 runOnUiThread {
-                     val adapter = ArtistAdapter(context, artistsList)
-                     artistListView.adapter = adapter
-                 }
+                    runOnUiThread {
+                        (artistListView.adapter as BaseAdapter).notifyDataSetChanged()
+                    }
                 }
             } catch (ex: Exception) {
                 Log.d("ARTIST_EXCEPTION", ex.toString())
@@ -92,6 +82,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun getView(index: Int, convertView: View?, parent: ViewGroup?): View {
+//
             val artist = listArtist[index]
             val inflator =
                 context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -100,6 +91,15 @@ class MainActivity : AppCompatActivity() {
             myView.tvName.text = artist.name
             myView.tvDescription.text = artist.description
             Glide.with(context!!).load(artist.image).into(myView.imgName)
+
+            myView.setOnClickListener {
+//                val intent = Intent(context, ArtistDetails::class.java)
+                intent.putExtra("name", artist.name)
+                intent.putExtra("desc", artist.description)
+                intent.putExtra("image", artist.image)
+                context!!.startActivity(intent)
+            }
+
             return myView
         }
 
