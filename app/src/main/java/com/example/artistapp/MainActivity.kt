@@ -1,6 +1,7 @@
 package com.example.artistapp
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,8 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
+import com.example.artistapp.acivities.ArtistDetails
 import com.example.artistapp.models.Artist
+import com.example.artistapp.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.artist_list_card.view.*
 import kotlinx.coroutines.Dispatchers
@@ -18,9 +22,6 @@ import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import retrofit2.converter.gson.GsonConverterFactory
-
-
-const val BASE_URL = "https://jsonblob.com/api/jsonBlob/"
 
 class MainActivity : AppCompatActivity() {
 
@@ -40,9 +41,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getAllArtists(context: Context) {
+        progressBar1.isVisible = true
         val api =
             Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Constants.BASE_API)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(ApiRequests::class.java)
@@ -55,9 +57,13 @@ class MainActivity : AppCompatActivity() {
                     for (artist in dataList.artists) {
                         artistsList.add(artist)
                     }
-                    artistListAdapter?.notifyDataSetChanged()
+                    runOnUiThread {
+                        progressBar1.isVisible = false
+                        artistListAdapter?.notifyDataSetChanged()
+                    }
                 }
             } catch (ex: Exception) {
+                progressBar1.isVisible = false
                 Log.d("ARTIST_EXCEPTION", ex.toString())
             }
         }
@@ -92,10 +98,11 @@ class MainActivity : AppCompatActivity() {
             Glide.with(context!!).load(artist.image).into(myView.imgName)
 
             myView.setOnClickListener {
-//                val intent = Intent(context, ArtistDetails::class.java)
+                val intent = Intent(context, ArtistDetails::class.java)
                 intent.putExtra("name", artist.name)
                 intent.putExtra("desc", artist.description)
                 intent.putExtra("image", artist.image)
+                intent.putExtra("albums", artist.albums)
                 context!!.startActivity(intent)
             }
 

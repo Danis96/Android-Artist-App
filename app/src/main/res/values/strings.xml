@@ -2,4 +2,5 @@
     <string name="app_name">Artist App</string>
     <string name="headline_main">Welcome to Artist App</string>
     <string name="headline_desc">If you click on your artist , you can see more info. </string>
+    <string name="details_desc">Eminem is among the best-selling music artists of all time, with estimated worldwide sales of more than 220 million records. </string>
 </resources>

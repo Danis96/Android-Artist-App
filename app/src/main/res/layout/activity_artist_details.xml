@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/artistDetailsView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/holo_orange"
+    android:orientation="vertical"
+    tools:context=".acivities.ArtistDetails">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="350dp">
+
+        <ImageView
+            android:id="@+id/imgArtistDetails"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="96dp"
+            android:layout_marginLeft="96dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="115dp"
+            android:layout_marginRight="115dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/slika" />
+
+        <TextView
+            android:id="@+id/tvArtistDetailsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="165dp"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="188dp"
+            android:layout_marginRight="188dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgArtistDetails" />
+
+        <TextView
+            android:id="@+id/tvArtistDetailsDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:padding="3pt"
+            android:text="@string/details_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvArtistDetailsName" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Large.Inverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="false"
+        android:layout_gravity="center"
+        android:background="@color/holo_orange"
+        android:indeterminate="false" />
+
+    <ListView
+        android:id="@+id/artistAlbumList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

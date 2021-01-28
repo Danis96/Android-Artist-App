@@ -10,7 +10,7 @@ class Artist(
     @SerializedName("image")
     val image: String,
     @SerializedName("albums")
-    val albums: List<Any>,
-    @SerializedName("description")
+    val albums: String,
+    @SerializedName("decription")
     val description: String,
 )

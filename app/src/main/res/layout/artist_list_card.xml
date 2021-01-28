@@ -37,8 +37,10 @@
 
             <TextView
                 android:id="@+id/tvDescription"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
                 android:text="@string/headline_main"
                 android:textSize="16sp" />
         </LinearLayout>
