@@ -1,7 +1,7 @@
-package com.example.artistapp
+package com.example.artistapp.data
 
-import com.example.artistapp.models.Albums
-import com.example.artistapp.models.Artists
+import com.example.artistapp.data.models.Albums
+import com.example.artistapp.data.models.Artists
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.GET

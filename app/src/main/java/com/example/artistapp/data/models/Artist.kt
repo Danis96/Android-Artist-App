@@ -1,4 +1,4 @@
-package com.example.artistapp.models
+package com.example.artistapp.data.models
 
 import com.google.gson.annotations.SerializedName
 

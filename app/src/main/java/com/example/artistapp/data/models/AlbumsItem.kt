@@ -1,4 +1,4 @@
-package com.example.artistapp.models
+package com.example.artistapp.data.models
 
 data class AlbumsItem(
     val cover: String,

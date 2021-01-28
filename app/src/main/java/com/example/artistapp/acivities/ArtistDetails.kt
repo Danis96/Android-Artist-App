@@ -10,9 +10,9 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
-import com.example.artistapp.ApiRequests
+import com.example.artistapp.data.ApiRequests
 import com.example.artistapp.R
-import com.example.artistapp.models.AlbumsItem
+import com.example.artistapp.data.models.AlbumsItem
 import com.example.artistapp.utils.Constants
 import kotlinx.android.synthetic.main.activity_artist_details.*
 import kotlinx.android.synthetic.main.activity_artist_details.progressBar1

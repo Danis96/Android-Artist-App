@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.artistapp.acivities.ArtistDetails
-import com.example.artistapp.models.Artist
+import com.example.artistapp.data.ApiRequests
+import com.example.artistapp.data.models.Artist
 import com.example.artistapp.utils.Constants
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.artist_list_card.view.*
