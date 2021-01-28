@@ -25,6 +25,7 @@ const val BASE_URL = "https://jsonblob.com/api/jsonBlob/"
 class MainActivity : AppCompatActivity() {
 
     var artistsList = arrayListOf<Artist>()
+    var artistListAdapter : ArtistAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         getAllArtists(this)
 
-        val adapter = ArtistAdapter(this, artistsList)
-        artistListView.adapter = adapter
+        artistListAdapter = ArtistAdapter(this, artistsList)
+        artistListView.adapter = artistListAdapter
 
 
     }
@@ -54,9 +55,7 @@ class MainActivity : AppCompatActivity() {
                     for (artist in dataList.artists) {
                         artistsList.add(artist)
                     }
-                    runOnUiThread {
-                        (artistListView.adapter as BaseAdapter).notifyDataSetChanged()
-                    }
+                    artistListAdapter?.notifyDataSetChanged()
                 }
             } catch (ex: Exception) {
                 Log.d("ARTIST_EXCEPTION", ex.toString())
