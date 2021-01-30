@@ -20,7 +20,6 @@ class AlbumDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_album_details)
-
         getData()
     }
 
@@ -61,7 +60,6 @@ class AlbumDetails : AppCompatActivity() {
         if (!hasCameraPermission()) {
             permissionsToRequest.add(Manifest.permission.CAMERA)
         }
-
         if (permissionsToRequest.isNotEmpty()) {
             ActivityCompat.requestPermissions(this, permissionsToRequest.toTypedArray(), 100)
         }
@@ -72,7 +70,6 @@ class AlbumDetails : AppCompatActivity() {
         if (!hasLocationForegroundPermission()) {
             permissionsToRequest.add(Manifest.permission.ACCESS_COARSE_LOCATION)
         }
-
         if (permissionsToRequest.isNotEmpty()) {
             ActivityCompat.requestPermissions(this, permissionsToRequest.toTypedArray(), 101)
         }
@@ -89,6 +86,8 @@ class AlbumDetails : AppCompatActivity() {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     Log.d("Permissions||", "${permissions[i]} granted")
                     permissionsToRequest.clear()
+                } else {
+                    permissionsToRequest.clear()
                 }
             }
         } else if(requestCode == 101 && grantResults.isNotEmpty()) {
@@ -96,9 +95,10 @@ class AlbumDetails : AppCompatActivity() {
                 if (grantResults[i] == PackageManager.PERMISSION_GRANTED) {
                     Log.d("Permissions||", "${permissions[i]} granted")
                     permissionsToRequest.clear()
+                } else {
+                    permissionsToRequest.clear()
                 }
             }
         }
     }
-
 }
